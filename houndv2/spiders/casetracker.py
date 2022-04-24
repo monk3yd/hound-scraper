@@ -36,11 +36,9 @@ class CasetrackerSpider(scrapy.Spider):
         # TODO - Stealth browser
 
         # Manage goto Login Homepage
-        # dropdown_btn = browser.find_element(By.CLASS_NAME, 'dropbtn')
         dropdown_btn = WebDriverWait(browser, timeout=10).until(EC.element_to_be_clickable(browser.find_element(By.CLASS_NAME, 'dropbtn')))
         dropdown_btn.click()
 
-        # go_to_login = browser.find_element(By.XPATH, "//div[@id='myDropdown']/a")
         goto_login = WebDriverWait(browser, timeout=10).until(EC.element_to_be_clickable(browser.find_element(By.XPATH, "//div[@id='myDropdown']/a")))
         goto_login.click()
 
@@ -48,17 +46,14 @@ class CasetrackerSpider(scrapy.Spider):
         browser.implicitly_wait(3)
 
         # Mange Login Form
-        # rut_input = browser.find_element(By.ID, "uname")
         rut_input = WebDriverWait(browser, timeout=10).until(
             EC.element_to_be_clickable(browser.find_element(By.ID, "uname")))
         rut_input.send_keys(self.rut)
 
-        # password_input = browser.find_element(By.ID, "pword")
         password_input = WebDriverWait(browser, timeout=10).until(
             EC.element_to_be_clickable(browser.find_element(By.ID, "pword")))
         password_input.send_keys(self.password)
 
-        # login = browser.find_element(By.ID, "login-submit")
         login = WebDriverWait(browser, timeout=10).until(
             EC.element_to_be_clickable(browser.find_element(By.ID, "login-submit")))
         login.click()
