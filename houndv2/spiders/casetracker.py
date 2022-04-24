@@ -13,9 +13,11 @@ class CasetrackerSpider(scrapy.Spider):
     name = 'casetracker'
 
     def start_requests(self):
-        # Testing need to externalize the password, pass in from pipeline # TODO
+        # Set up credentials from env variables 
         self.rut = os.environ["MY_RUT"]
         self.password = os.environ["MY_PASS"]
+
+        # TODO - Secure the password
 
         yield SeleniumRequest(
             url="https://oficinajudicialvirtual.pjud.cl/home/index.php",
@@ -25,13 +27,12 @@ class CasetrackerSpider(scrapy.Spider):
         )
 
     def parse(self, response):
-        # with open("proof_of_work.png", "wb") as file:
-        #     file.write(response.meta["screenshot"])
-
         # Initialize browser from SeleniumRequest response
         browser = response.meta["driver"]
 
-        # Manage Login Homepage
+        # Stealth browser
+
+        # Manage goto Login Homepage
         dropdown_btn = browser.find_element(By.CLASS_NAME, 'dropbtn')
         dropdown_btn.click()
         time.sleep(2)
