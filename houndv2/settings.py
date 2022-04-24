@@ -56,9 +56,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-ITEM_PIPELINES = {
-   'imdb.pipelines.SQLlitePipeline': 300
-}
+# ITEM_PIPELINES = {
+#    'imdb.pipelines.SQLlitePipeline': 300
+# }
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
@@ -68,7 +68,7 @@ ITEM_PIPELINES = {
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-AUTOTHROTTLE_ENABLED = True
+# AUTOTHROTTLE_ENABLED = True
 # The initial download delay
 # AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
@@ -81,7 +81,7 @@ AUTOTHROTTLE_ENABLED = True
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-HTTPCACHE_ENABLED = True
+# HTTPCACHE_ENABLED = True
 #HTTPCACHE_EXPIRATION_SECS = 0
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
@@ -97,7 +97,7 @@ SELENIUM_DRIVER_ARGUMENTS = ['-window-size=1920,1080','-headless']
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-ITEM_PIPELINES = {
-   'imdb.pipelines.SQLlitePipeline': 300
-}
+# ITEM_PIPELINES = {
+#    'imdb.pipelines.SQLlitePipeline': 300
+# }
 FEED_EXPORT_ENCODING = "utf-8"
