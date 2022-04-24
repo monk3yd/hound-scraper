@@ -42,7 +42,7 @@ class CasetrackerSpider(scrapy.Spider):
         goto_login = WebDriverWait(browser, timeout=10).until(EC.element_to_be_clickable(browser.find_element(By.XPATH, "//div[@id='myDropdown']/a")))
         goto_login.click()
 
-        # TODO - randomize WebDriverWait(browser, timeout=10)
+        # TODO - randomize implicit wait
         browser.implicitly_wait(3)
 
         # Mange Login Form
