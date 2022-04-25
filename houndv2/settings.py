@@ -93,7 +93,8 @@ HTTPCACHE_ENABLED = True
 # SCRAPY_SELENIUM_MODULE
 SELENIUM_DRIVER_NAME = 'firefox'
 SELENIUM_DRIVER_EXECUTABLE_PATH = "/usr/local/bin/geckodriver"  # = Service(GeckoDriverManager().install())  # TODO
-SELENIUM_DRIVER_ARGUMENTS = ['-window-size=1920,1080','-headless']
+SELENIUM_DRIVER_ARGUMENTS = ['-window-size=1920,1080']
+# SELENIUM_DRIVER_ARGUMENTS = ['-window-size=1920,1080','-headless']
 # SELENIUM_MAX_INSTANCES = 16 # if not set, will default to match CONCURRENT_REQUEST  # TODO with https://github.com/dylanwalker/better-scrapy-selenium
 
 

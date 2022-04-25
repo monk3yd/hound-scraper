@@ -5,6 +5,7 @@ from scrapy_selenium import SeleniumRequest
 from scrapy.selector import Selector
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
@@ -17,7 +18,6 @@ class CasetrackerSpider(scrapy.Spider):
         # Set up credentials from env variables 
         self.rut = os.environ["MY_RUT"]
         self.password = os.environ["MY_PASS"]
-        self.first_parse = True
 
         # TODO - Secure the password
 
@@ -71,26 +71,65 @@ class CasetrackerSpider(scrapy.Spider):
         # TODO - randomize implicit wait
         browser.implicitly_wait(3)
         print(self.all_tracking_data)
-        # Loop
-        # RIT search page form. Get all search parameter elements
-        # competencia_dropdown_element = WebDriverWait(browser, timeout=10).until(
-        #     EC.element_to_be_clickable(browser.find_element(By.ID, "competencia"))
-        # )
-        # corte_dropdown = WebDriverWait(browser, timeout=10).until(
-        #     EC.element_to_be_clickable(browser.find_element(By.ID, "conCorte"))
-        # )
-        # rol_input = WebDriverWait(browser, timeout=10).until(
-        #     EC.element_to_be_clickable(browser.find_element(By.ID, "conRolCausa"))
-        # )
-        # year_input = WebDriverWait(browser, timeout=10).until(
-        #     EC.element_to_be_clickable(browser.find_element(By.ID, "conEraCausa"))
-        # )
-        # tipo_dropdown = WebDriverWait(browser, timeout=10).until(
-        #     EC.element_to_be_clickable(browser.find_element(By.ID, "conTipoCausa"))
-        # )
-        # search_btn = WebDriverWait(browser, timeout=10).until(
-        #     EC.element_to_be_clickable(browser.find_element(By.ID, "btnConConsulta"))
-        # )
+
+        # Loop through all cases
+        # Competencia
+        competencia_dropdown = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.ID, "competencia"))
+        )
+        competencia_dropdown.click()
+        competencia = Select(competencia_dropdown)
+        competencia.select_by_visible_text(f"{self.all_tracking_data[0]['COMPETENCIA']}")
+
+        # Corte
+        corte_dropdown = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.ID, "conCorte"))
+        )
+        corte_dropdown.click()
+        corte = Select(corte_dropdown)
+        corte.select_by_visible_text(f"C.A. de {self.all_tracking_data[0]['CORTE']}")
+
+        # Rol
+        rol_input = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.ID, "conRolCausa"))
+        )
+        rol_input.clear()
+        rol_input.send_keys(self.all_tracking_data[0]["ROL"])
+
+        # Year
+        year_input = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.ID, "conEraCausa"))
+        )
+        year_input.clear()
+        year_input.send_keys(self.all_tracking_data[0]["AÑO"])
+        year_input.click()
+
+        browser.implicitly_wait(3)
+
+        # Tipo/Libro
+        tipo_dropdown = WebDriverWait(browser, timeout=10).until(
+            EC.presence_of_element_located((By.ID, "conTipoCausa"))
+        )
+        tipo_dropdown.click()
+        tipo = Select(tipo_dropdown)
+        tipo.select_by_visible_text(self.all_tracking_data[0]["TIPO"])
+
+
+        # General search
+        search_btn = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.ID, "btnConConsulta"))
+        )
+        search_btn.click()
+
+        # Details search
+        case_details = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.CSS_SELECTOR, "a[href='#modalDetalleApelaciones']"))
+        )
+        case_details.click()
+
+        browser.implicitly_wait(3)
+
+        # Scrape table movs
 
         # Proof of work
         browser.save_screenshot("proof_of_login.png")
