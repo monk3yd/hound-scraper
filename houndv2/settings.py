@@ -45,6 +45,8 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
+    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    # 'houndv2/middlewares.UserAgentRotatorMiddleware': 400,
     'scrapy_selenium.SeleniumMiddleware': 800
 }
 

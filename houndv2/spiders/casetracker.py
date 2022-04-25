@@ -1,6 +1,5 @@
 import os
 import time
-import logging
 import scrapy
 
 from scrapy_selenium import SeleniumRequest
@@ -35,17 +34,19 @@ class CasetrackerSpider(scrapy.Spider):
 
         # TODO - Stealth browser
 
-        # Manage goto Login Homepage
-        dropdown_btn = WebDriverWait(browser, timeout=10).until(EC.element_to_be_clickable(browser.find_element(By.CLASS_NAME, 'dropbtn')))
+        # Intro homepage
+        dropdown_btn = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.CLASS_NAME, 'dropbtn')))
         dropdown_btn.click()
 
-        goto_login = WebDriverWait(browser, timeout=10).until(EC.element_to_be_clickable(browser.find_element(By.XPATH, "//div[@id='myDropdown']/a")))
+        goto_login = WebDriverWait(browser, timeout=10).until(
+            EC.element_to_be_clickable(browser.find_element(By.XPATH, "//div[@id='myDropdown']/a")))
         goto_login.click()
 
         # TODO - randomize implicit wait
         browser.implicitly_wait(3)
 
-        # Mange Login Form
+        # Login Form
         rut_input = WebDriverWait(browser, timeout=10).until(
             EC.element_to_be_clickable(browser.find_element(By.ID, "uname")))
         rut_input.send_keys(self.rut)
@@ -58,4 +59,5 @@ class CasetrackerSpider(scrapy.Spider):
             EC.element_to_be_clickable(browser.find_element(By.ID, "login-submit")))
         login.click()
 
+        # Proof of work
         browser.save_screenshot("proof_of_login.png")
