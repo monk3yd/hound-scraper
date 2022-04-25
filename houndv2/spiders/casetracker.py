@@ -70,7 +70,7 @@ class CasetrackerSpider(scrapy.Spider):
 
         # TODO - randomize implicit wait
         browser.implicitly_wait(3)
-        print(self.all_tracked_data)
+        print(self.all_tracking_data)
         # Loop
         # RIT search page form. Get all search parameter elements
         # competencia_dropdown_element = WebDriverWait(browser, timeout=10).until(
@@ -93,7 +93,4 @@ class CasetrackerSpider(scrapy.Spider):
         # )
 
         # Proof of work
-        WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable()
-        )
         browser.save_screenshot("proof_of_login.png")

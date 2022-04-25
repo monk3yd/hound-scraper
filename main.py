@@ -4,15 +4,13 @@ from scrapy.utils.project import get_project_settings
 
 
 def main():
-    # Load cases data for search from db
+    # Load cases tracking data
     df = pd.read_csv("db.csv")
-    all_tracked_data = df.to_dict(orient="index")
+    all_tracking_data = df.to_dict(orient="index")
 
-    # Selenium
-
-    # Scrapy
+    # Selenium & Scrapy
     process = CrawlerProcess(get_project_settings())
-    process.crawl("casetracker", all_tracked_data=all_tracked_data)
+    process.crawl("casetracker", all_tracking_data=all_tracking_data)
     process.start()
 
 
