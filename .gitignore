@@ -131,3 +131,4 @@ dmypy.json
 # Own
 *.png
 *.code-workspace
+houndv2.txt
