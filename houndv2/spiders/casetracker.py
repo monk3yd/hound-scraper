@@ -164,7 +164,8 @@ class CasetrackerSpider(scrapy.Spider):
                         "fecha": data.xpath(".//td[6]/text()").get(),
                         "sala": data.xpath(".//td[7]/text()").get(),
                         "estado": data.xpath(".//td[8]/text()").get(),
-                        # "georef": data.xpath(".//td[9]/text()").get()
+                        # "georef": data.xpath(".//td[9]/text()").get(),
+                        "tracking_data": case
                     }
 
                     # Close case table. Back to details search

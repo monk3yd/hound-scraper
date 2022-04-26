@@ -7,7 +7,7 @@ def main():
     # Load cases tracking data
     df = pd.read_csv("db.csv")
     all_tracking_data = df.to_dict(orient="records")  # List of dicts
-    print(all_tracking_data)
+
     # Selenium & Scrapy
     process = CrawlerProcess(get_project_settings())
     process.crawl("casetracker", all_tracking_data=all_tracking_data)

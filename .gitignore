@@ -132,3 +132,5 @@ dmypy.json
 *.png
 *.code-workspace
 houndv2.txt
+*.csv
+*.gdsheet
