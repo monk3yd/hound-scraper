@@ -161,14 +161,20 @@ class CasetrackerSpider(scrapy.Spider):
         table_rows = resp.xpath("//tbody/tr")
         for data in table_rows:
             # Extract doc url
-            action = data.xpath(".//td/form/@action").get()
-            value = data.xpath(".//td/form/input/@value").get()
+            action = data.xpath(".//td[2]/form/@action").get()
+            value = data.xpath(".//td[2]/form/input/@value").get()
             doc_url = f"https://oficinajudicialvirtual.pjud.cl/{action}?valorDoc={value}"
 
             yield {
-                "folio": data.xpath(".//td/text()").get(),
+                "folio": data.xpath(".//td[1]/text()").get(),
                 "doc": doc_url,
-
+                # "anexo": data.xpath(".//td[3]/text()").get(),
+                "tramite": data.xpath(".//td[4]/text()").get(),
+                "descripcion": data.xpath(".//td[5]/span/text()").get(),
+                "fecha": data.xpath(".//td[6]/text()").get(),
+                "sala": data.xpath(".//td[7]/text()").get(),
+                "estado": data.xpath(".//td[8]/text()").get(),
+                # "georef": data.xpath(".//td[9]/text()").get()
             }
 
         # Back to Details search

@@ -12,8 +12,7 @@ from itemadapter import ItemAdapter
 
 class SQLlitePipeline(object):
     collection_name = "casetracker"
-    headers = ['Folio', 'Doc.', 'Anexo', 'Trámite', 'Descripción', 'Fecha', 'Sala', 'Estado', 'Georeferencia']
-    
+    headers = ['Folio', 'Doc', 'Trámite', 'Descripción', 'Fecha', 'Sala', 'Estado']  # headers = ['Folio', 'Doc', 'Anexo', 'Trámite', 'Descripción', 'Fecha', 'Sala', 'Estado', 'Georeferencia']
 
     # def open_spider(self, spider):
     #     logging.info("Spider opened from pipeline")
@@ -44,7 +43,14 @@ class SQLlitePipeline(object):
     def process_item(self, item, spider):
         case = [
             item["folio"],
-            item["doc"]
+            item["doc"],
+            # item["anexo"],
+            item["tramite"],
+            item["descripcion"],
+            item["fecha"],
+            item["sala"],
+            item["estado"],
+            # item["georef"],
         ]
 
         # Insert into db
