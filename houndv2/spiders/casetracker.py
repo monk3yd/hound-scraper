@@ -148,21 +148,32 @@ class CasetrackerSpider(scrapy.Spider):
         html = browser.find_element(By.XPATH, "//*[@id='movimientosApe']/div/div/table").get_attribute('outerHTML')
         resp = Selector(text=html)  # response_obj = Selector(text=browser.page_source)
 
-        theaders = []
-        all_headers = resp.xpath("//thead/tr/th")
-        for header in all_headers:
-            yield {
-                "header": header.xpath(".//text()").get(),
-            }
+        # if not self.scraped_headers:
+        #     self.scraped_headers = True
+        #     # Get table headers
+        #     all_headers = resp.xpath("//thead/tr/th")
+        #     for header in all_headers:
+        #         yield {
+        #             "header": header.xpath(".//text()").get(),
+        #         }
 
-        # theads = response_obj.xpath("//*[@id='movimientosApe']/div/div/table/thead/tr")
-        # for thead in theads:
-        #     yield {
-        #        "folio": thead.xpath(".//text()").get(),
-        #        "doc": t
-        #     }
+        # Get table data
+        table_rows = resp.xpath("//tbody/tr")
+        for data in table_rows:
+            # Extract doc url
+            action = data.xpath(".//td/form/@action").get()
+            value = data.xpath(".//td/form/input/@value").get()
+            doc_url = f"https://oficinajudicialvirtual.pjud.cl/{action}?valorDoc={value}"
+
+            yield {
+                "folio": data.xpath(".//td/text()").get(),
+                "doc": doc_url,
+
+            }
 
         # Back to Details search
 
         # Proof of work
         browser.save_screenshot("proof_of_work.png")
+
+# ADIR_871/apelaciones/documentos/docCausaApelaciones.php?valorDoc=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY1MDk2MzkwNywiZXhwIjoxNjUwOTY3NTA3LCJkYXRhIjp7ImNycl9kb2MiOiIyOTE3MzE4MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIzMjU5MzYwMiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.XNp7aVdukyzDlc5aj5PSiJQBY_vaPH2OjfAZVx45mh0
