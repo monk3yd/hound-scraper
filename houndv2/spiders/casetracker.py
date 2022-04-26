@@ -1,8 +1,12 @@
 import os
 import scrapy
+import logging
+import time
 
 from scrapy_selenium import SeleniumRequest
 from scrapy.selector import Selector
+from scrapy.utils.log import configure_logging
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -14,8 +18,16 @@ from selenium.common.exceptions import *
 class CasetrackerSpider(scrapy.Spider):
     name = 'casetracker'
 
+    # Create log
+    configure_logging(install_root_handler=False)
+    logging.basicConfig(
+        filename='houndv2.txt',
+        format='%(levelname)s: %(message)s',
+        level=logging.INFO
+    )
+
     def start_requests(self):
-        # Set up credentials from env variables 
+        # TODO - Implemet on main. Set up credentials from env variables 
         self.rut = os.environ["MY_RUT"]
         self.password = os.environ["MY_PASS"]
 
@@ -35,7 +47,7 @@ class CasetrackerSpider(scrapy.Spider):
         # TODO - Stealth browser
 
         # if self.first_parse:
-        self.first_parse = False
+        # self.first_parse = False
 
         # Intro homepage
         dropdown_btn = WebDriverWait(browser, timeout=10).until(
@@ -123,13 +135,14 @@ class CasetrackerSpider(scrapy.Spider):
 
         # Details search
         case_details = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.CSS_SELECTOR, "a[href='#modalDetalleApelaciones']"))
+            EC.element_to_be_clickable(browser.find_element(By.XPATH, "//a[@title='Detalle de la causa']"))
         )
         case_details.click()
 
-        browser.implicitly_wait(3)
+        time.sleep(3)
 
         # Scrape table movs
 
+
         # Proof of work
-        browser.save_screenshot("proof_of_login.png")
+        browser.save_screenshot("proof_of_work.png")
