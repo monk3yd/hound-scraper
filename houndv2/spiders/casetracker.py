@@ -17,6 +17,7 @@ from selenium.common.exceptions import *
 
 class CasetrackerSpider(scrapy.Spider):
     name = 'casetracker'
+    first_parse = True
 
     # Create log
     configure_logging(install_root_handler=False)
@@ -46,43 +47,45 @@ class CasetrackerSpider(scrapy.Spider):
 
         # TODO - Stealth browser
 
-        # if self.first_parse:
-        # self.first_parse = False
 
-        # Intro homepage
-        dropdown_btn = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.CLASS_NAME, 'dropbtn')))
-        dropdown_btn.click()
+        # Run just the first time
+        if self.first_parse:
+            self.first_parse = False
 
-        goto_login = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.XPATH, "//div[@id='myDropdown']/a")))
-        goto_login.click()
+            # Intro homepage
+            dropdown_btn = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.CLASS_NAME, 'dropbtn')))
+            dropdown_btn.click()
 
-        # TODO - randomize implicit wait
-        browser.implicitly_wait(3)
+            goto_login = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.XPATH, "//div[@id='myDropdown']/a")))
+            goto_login.click()
 
-        # Login Form
-        rut_input = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "uname")))
-        rut_input.send_keys(self.rut)
+            # TODO - randomize implicit wait
+            browser.implicitly_wait(3)
 
-        password_input = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "pword")))
-        password_input.send_keys(self.password)
+            # Login Form
+            rut_input = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "uname")))
+            rut_input.send_keys(self.rut)
 
-        login = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "login-submit")))
-        login.click()
-        
-        # Search page (consulta unificada)
-        goto_search = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.XPATH, "//a[@onclick='consultaUnificada();']"))
-        )
-        goto_search.click()
+            password_input = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "pword")))
+            password_input.send_keys(self.password)
 
-        # TODO - randomize implicit wait
-        browser.implicitly_wait(3)
-        print(self.all_tracking_data)
+            login = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "login-submit")))
+            login.click()
+            
+            # Search page (consulta unificada)
+            goto_search = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.XPATH, "//a[@onclick='consultaUnificada();']"))
+            )
+            goto_search.click()
+
+            # TODO - randomize implicit wait
+            browser.implicitly_wait(3)
+            print(self.all_tracking_data)
 
         # Loop through all cases
         # Competencia
@@ -141,8 +144,25 @@ class CasetrackerSpider(scrapy.Spider):
 
         time.sleep(3)
 
-        # Scrape table movs
+        # Get html for scrapy
+        html = browser.find_element(By.XPATH, "//*[@id='movimientosApe']/div/div/table").get_attribute('outerHTML')
+        resp = Selector(text=html)  # response_obj = Selector(text=browser.page_source)
 
+        theaders = []
+        all_headers = resp.xpath("//thead/tr/th")
+        for header in all_headers:
+            actual_header = header.xpath(".//text()").get()
+            yield {
+                "header": header.xpath(".//text()").get(),
+            }
+        # theads = response_obj.xpath("//*[@id='movimientosApe']/div/div/table/thead/tr")
+        # for thead in theads:
+        #     yield {
+        #        "folio": thead.xpath(".//text()").get(),
+        #        "doc": t
+        #     }
+
+        # Back to Details search
 
         # Proof of work
         browser.save_screenshot("proof_of_work.png")
