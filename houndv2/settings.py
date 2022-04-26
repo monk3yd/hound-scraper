@@ -58,16 +58,16 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-# ITEM_PIPELINES = {
-#    'imdb.pipelines.SQLlitePipeline': 300
+# SPIDER_MIDDLEWARES = {
+#    'casetracker.middlewares.CasetrackerSpiderMiddleware': 543,
 # }
+
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-    # "casetracker.pipelines.SQLlitePipeline": 300
-#    'houndv2.pipelines.Houndv2Pipeline': 300,
-# }
+ITEM_PIPELINES = {
+    "houndv2.pipelines.SQLlitePipeline": 300
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

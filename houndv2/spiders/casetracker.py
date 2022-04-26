@@ -151,10 +151,10 @@ class CasetrackerSpider(scrapy.Spider):
         theaders = []
         all_headers = resp.xpath("//thead/tr/th")
         for header in all_headers:
-            actual_header = header.xpath(".//text()").get()
             yield {
                 "header": header.xpath(".//text()").get(),
             }
+
         # theads = response_obj.xpath("//*[@id='movimientosApe']/div/div/table/thead/tr")
         # for thead in theads:
         #     yield {
