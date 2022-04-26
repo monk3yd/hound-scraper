@@ -85,101 +85,96 @@ class CasetrackerSpider(scrapy.Spider):
 
             # TODO - randomize implicit wait
             browser.implicitly_wait(3)
-            print(self.all_tracking_data)
 
         # Loop through all cases
-        # Competencia
-        competencia_dropdown = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "competencia"))
-        )
-        competencia_dropdown.click()
-        competencia = Select(competencia_dropdown)
-        competencia.select_by_visible_text(f"{self.all_tracking_data[0]['COMPETENCIA']}")
+        for case in self.all_tracking_data:
+            # Competencia
+            competencia_dropdown = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "competencia"))
+            )
+            competencia_dropdown.click()
+            competencia = Select(competencia_dropdown)
+            competencia.select_by_visible_text(f"{case['COMPETENCIA']}")
 
-        # Corte
-        corte_dropdown = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "conCorte"))
-        )
-        corte_dropdown.click()
-        corte = Select(corte_dropdown)
-        corte.select_by_visible_text(f"C.A. de {self.all_tracking_data[0]['CORTE']}")
+            # Corte
+            corte_dropdown = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "conCorte"))
+            )
+            corte_dropdown.click()
+            corte = Select(corte_dropdown)
+            corte.select_by_visible_text(f"C.A. de {case['CORTE']}")
 
-        # Rol
-        rol_input = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "conRolCausa"))
-        )
-        rol_input.clear()
-        rol_input.send_keys(self.all_tracking_data[0]["ROL"])
+            # Rol
+            rol_input = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "conRolCausa"))
+            )
+            rol_input.clear()
+            rol_input.send_keys(case["ROL"])
 
-        # Year
-        year_input = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "conEraCausa"))
-        )
-        year_input.clear()
-        year_input.send_keys(self.all_tracking_data[0]["AÑO"])
-        year_input.click()
+            # Year
+            year_input = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "conEraCausa"))
+            )
+            year_input.clear()
+            year_input.send_keys(case["AÑO"])
+            year_input.click()
 
-        browser.implicitly_wait(3)
+            browser.implicitly_wait(3)
 
-        # Tipo/Libro
-        tipo_dropdown = WebDriverWait(browser, timeout=10).until(
-            EC.presence_of_element_located((By.ID, "conTipoCausa"))
-        )
-        tipo_dropdown.click()
-        tipo = Select(tipo_dropdown)
-        tipo.select_by_visible_text(self.all_tracking_data[0]["TIPO"])
+            # Tipo/Libro
+            tipo_dropdown = WebDriverWait(browser, timeout=10).until(
+                EC.presence_of_element_located((By.ID, "conTipoCausa"))
+            )
+            tipo_dropdown.click()
+            tipo = Select(tipo_dropdown)
+            tipo.select_by_visible_text(case["TIPO"])
 
+            # General search
+            search_btn = WebDriverWait(browser, timeout=10).until(
+                EC.element_to_be_clickable(browser.find_element(By.ID, "btnConConsulta"))
+            )
+            search_btn.click()
+            try:
+                # Details search
+                case_details = WebDriverWait(browser, timeout=10).until(
+                    EC.element_to_be_clickable(browser.find_element(By.XPATH, "//a[@title='Detalle de la causa']"))
+                )
+                case_details.click()
 
-        # General search
-        search_btn = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.ID, "btnConConsulta"))
-        )
-        search_btn.click()
+                time.sleep(5)
 
-        # Details search
-        case_details = WebDriverWait(browser, timeout=10).until(
-            EC.element_to_be_clickable(browser.find_element(By.XPATH, "//a[@title='Detalle de la causa']"))
-        )
-        case_details.click()
+                # Get HTML for scrapy
+                html = browser.find_element(By.XPATH, "//*[@id='movimientosApe']/div/div/table").get_attribute('outerHTML')
+                resp = Selector(text=html)  # response_obj = Selector(text=browser.page_source)
 
-        time.sleep(3)
+                # Get table data
+                table_rows = resp.xpath("//tbody/tr")
+                for data in table_rows:
+                    # Extract doc url
+                    action = data.xpath(".//td[2]/form/@action").get()
+                    value = data.xpath(".//td[2]/form/input/@value").get()
+                    doc_url = f"https://oficinajudicialvirtual.pjud.cl/{action}?valorDoc={value}"
 
-        # Get html for scrapy
-        html = browser.find_element(By.XPATH, "//*[@id='movimientosApe']/div/div/table").get_attribute('outerHTML')
-        resp = Selector(text=html)  # response_obj = Selector(text=browser.page_source)
+                    yield {
+                        "folio": data.xpath(".//td[1]/text()").get(),
+                        "doc": doc_url,
+                        # "anexo": data.xpath(".//td[3]/text()").get(),
+                        "tramite": data.xpath(".//td[4]/text()").get(),
+                        "descripcion": data.xpath(".//td[5]/span/text()").get(),
+                        "fecha": data.xpath(".//td[6]/text()").get(),
+                        "sala": data.xpath(".//td[7]/text()").get(),
+                        "estado": data.xpath(".//td[8]/text()").get(),
+                        # "georef": data.xpath(".//td[9]/text()").get()
+                    }
 
-        # if not self.scraped_headers:
-        #     self.scraped_headers = True
-        #     # Get table headers
-        #     all_headers = resp.xpath("//thead/tr/th")
-        #     for header in all_headers:
-        #         yield {
-        #             "header": header.xpath(".//text()").get(),
-        #         }
+                    # Close case table. Back to details search
+                    close_btn = browser.find_element(By.XPATH, "//div[@class='modal-header']/button[@class='close'][1]")
+                    browser.execute_script("arguments[0].scrollIntoView();", close_btn)
+                    browser.execute_script("arguments[0].click();", close_btn)
 
-        # Get table data
-        table_rows = resp.xpath("//tbody/tr")
-        for data in table_rows:
-            # Extract doc url
-            action = data.xpath(".//td[2]/form/@action").get()
-            value = data.xpath(".//td[2]/form/input/@value").get()
-            doc_url = f"https://oficinajudicialvirtual.pjud.cl/{action}?valorDoc={value}"
+                    browser.implicitly_wait(3)
+            except NoSuchElementException:
+                pass
 
-            yield {
-                "folio": data.xpath(".//td[1]/text()").get(),
-                "doc": doc_url,
-                # "anexo": data.xpath(".//td[3]/text()").get(),
-                "tramite": data.xpath(".//td[4]/text()").get(),
-                "descripcion": data.xpath(".//td[5]/span/text()").get(),
-                "fecha": data.xpath(".//td[6]/text()").get(),
-                "sala": data.xpath(".//td[7]/text()").get(),
-                "estado": data.xpath(".//td[8]/text()").get(),
-                # "georef": data.xpath(".//td[9]/text()").get()
-            }
-
-        # Back to Details search
-
-        # Proof of work
-        browser.save_screenshot("proof_of_work.png")
-
-# ADIR_871/apelaciones/documentos/docCausaApelaciones.php?valorDoc=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY1MDk2MzkwNywiZXhwIjoxNjUwOTY3NTA3LCJkYXRhIjp7ImNycl9kb2MiOiIyOTE3MzE4MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIzMjU5MzYwMiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.XNp7aVdukyzDlc5aj5PSiJQBY_vaPH2OjfAZVx45mh0
+            # # Proof of work
+            # browser.save_screenshot("proof_of_work.png")
