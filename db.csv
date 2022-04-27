@@ -1,6 +1,6 @@
-COMPETENCIA,CORTE,TIPO,ROL,AÑO,ARCHIVADA
-Corte Apelaciones,La Serena,Protección,3575,2019,FALSE
-Corte Apelaciones,Santiago,Protección,185015,2019,TRUE
-Corte Apelaciones,Temuco,Protección,915,2020,FALSE
-Corte Apelaciones,Valparaíso,Protección,20618,2020,FALSE
-Corte Apelaciones,San Miguel,Protección,7780,2020,TRUE
+uid,COMPETENCIA,CORTE,TIPO,ROL,AÑO,ARCHIVADA
+1,Corte Apelaciones,La Serena,Protección,3575,2019,FALSE
+2,Corte Apelaciones,Santiago,Protección,185015,2019,TRUE
+3,Corte Apelaciones,Temuco,Protección,915,2020,FALSE
+4,Corte Apelaciones,Valparaíso,Protección,20618,2020,FALSE
+5,Corte Apelaciones,San Miguel,Protección,7780,2020,TRUE

@@ -18,7 +18,7 @@ from selenium.common.exceptions import *
 class CasetrackerSpider(scrapy.Spider):
     name = 'casetracker'
     first_parse = True
-
+    
     # Create log
     configure_logging(install_root_handler=False)
     logging.basicConfig(
@@ -156,16 +156,16 @@ class CasetrackerSpider(scrapy.Spider):
                     doc_url = f"https://oficinajudicialvirtual.pjud.cl/{action}?valorDoc={value}"
 
                     yield {
+                        "case_uid": case["uid"],
                         "folio": data.xpath(".//td[1]/text()").get(),
-                        "doc": doc_url,
-                        # "anexo": data.xpath(".//td[3]/text()").get(),
+                        "link": doc_url,
                         "tramite": data.xpath(".//td[4]/text()").get(),
                         "descripcion": data.xpath(".//td[5]/span/text()").get(),
                         "fecha": data.xpath(".//td[6]/text()").get(),
                         "sala": data.xpath(".//td[7]/text()").get(),
                         "estado": data.xpath(".//td[8]/text()").get(),
+                        # "anexo": data.xpath(".//td[3]/text()").get(),
                         # "georef": data.xpath(".//td[9]/text()").get(),
-                        "tracking_data": case
                     }
 
                     # Close case table. Back to details search
@@ -174,8 +174,8 @@ class CasetrackerSpider(scrapy.Spider):
                     browser.execute_script("arguments[0].click();", close_btn)
 
                     browser.implicitly_wait(3)
-            except NoSuchElementException:
-                pass
+            except NoSuchElementException as error:
+                print(error)
 
             # # Proof of work
             # browser.save_screenshot("proof_of_work.png")
