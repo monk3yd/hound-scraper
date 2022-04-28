@@ -1,4 +1,3 @@
-# import sqlite3
 import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError
@@ -10,8 +9,7 @@ def main():
     # Connect to db
     engine = create_engine("sqlite:///casetracker.db")
     db = engine.connect()
-    # connection = sqlite3.connect("casetracker.db")
-    # db = connection.cursor()
+
     try:
         db.execute('''
             CREATE TABLE cases_track_data (
@@ -29,14 +27,16 @@ def main():
     
     # Get cases track data csv -> df -> db
     df = pd.read_csv("cases_track_data.csv")
-    df.to_sql("cases_track_data", db, if_exists="replace", index=True, index_label="uid")
+    df.to_sql("cases_track_data", db, if_exists="replace", index=True, index_label="uid")  # Add uid column
     print(df)
 
     # Extract tracking data from db  
-    all_tracking_data_df = pd.read_sql_query("SELECT uid, COMPETENCIA, CORTE, TIPO, ROL, AÑO FROM cases_track_data WHERE archivada = FALSE", db)
-    print(all_tracking_data_df)
-    # all_tracking_data = df.to_dict(orient="records")
-    # print(all_tracking_data)
+    tracking_data_df = pd.read_sql_query("SELECT uid, COMPETENCIA, CORTE, TIPO, ROL, AÑO FROM cases_track_data WHERE archivada = FALSE", db)
+    print(tracking_data_df)
+
+    all_tracking_data = tracking_data_df.to_dict(orient="records")
+    print(all_tracking_data)
+
     exit()
     # Scrape with Selenium & Scrapy
     process = CrawlerProcess(get_project_settings())
