@@ -19,22 +19,22 @@ class SQLlitePipeline(object):
         self.db = self.connection.cursor()
 
         # Create table 
-        # try:
-        self.db.execute('''
-            CREATE TABLE cases_movs (
-                row_id AUTOINCREMENT PRIMARY KEY,
-                case_uid INTEGER,
-                folio INTEGER,
-                tramite TEXT,
-                descripcion TEXT,
-                fecha TEXT,
-                sala TEXT,
-                estado TEXT,
-                link TEXT
-            );
-        ''')
-    # except sqlite3.OperationalError:
-        #     pass
+        try:
+            self.db.execute('''
+                CREATE TABLE cases_movs (
+                    row_id INTEGER PRIMARY KEY,
+                    case_uid INTEGER,
+                    folio INTEGER,
+                    tramite TEXT,
+                    descripcion TEXT,
+                    fecha TEXT,
+                    sala TEXT,
+                    estado TEXT,
+                    link TEXT
+                );
+            ''')
+        except sqlite3.OperationalError:
+                pass
 
     def close_spider(self, spider):
         # Close db
