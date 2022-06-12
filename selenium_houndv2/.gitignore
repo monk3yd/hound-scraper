@@ -56,7 +56,13 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.logeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
 .webassets-cache
 
 # Scrapy stuff:
@@ -128,4 +134,3 @@ dmypy.json
 houndv2.txt
 *.csv
 *.gdsheet
-.vscode/

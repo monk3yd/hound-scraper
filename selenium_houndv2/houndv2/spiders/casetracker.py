@@ -18,7 +18,7 @@ from selenium.common.exceptions import *
 class CasetrackerSpider(scrapy.Spider):
     name = 'casetracker'
     first_parse = True
-    
+
     # Create log
     configure_logging(install_root_handler=False)
     logging.basicConfig(
@@ -150,7 +150,7 @@ class CasetrackerSpider(scrapy.Spider):
                 # Get table data
                 table_rows = resp.xpath("//tbody/tr")
                 for data in table_rows:
-                    # Extract doc url
+                    # Extract link url
                     action = data.xpath(".//td[2]/form/@action").get()
                     value = data.xpath(".//td[2]/form/input/@value").get()
                     doc_url = f"https://oficinajudicialvirtual.pjud.cl/{action}?valorDoc={value}"

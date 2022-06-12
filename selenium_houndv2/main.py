@@ -25,22 +25,19 @@ def main():
     except OperationalError:
         pass
     
-    # Get cases track data csv -> df -> db
+    # Get cases_track_data csv -> df -> db
     df = pd.read_csv("cases_track_data.csv")
-    df.to_sql("cases_track_data", db, if_exists="replace", index=True, index_label="uid")  # Add uid column
-    print(df)
+    df.to_sql("cases_track_data", db, if_exists="replace", index=False)
+    # df.to_sql("cases_track_data", db, if_exists="replace", index=True, index_label="uid")
 
     # Extract tracking data from db  
     tracking_data_df = pd.read_sql_query("SELECT uid, COMPETENCIA, CORTE, TIPO, ROL, AÑO FROM cases_track_data WHERE archivada = FALSE", db)
-    print(tracking_data_df)
-
+    # tracking_data_df = pd.read_sql_query("SELECT uid, COMPETENCIA, CORTE, TIPO, ROL, AÑO FROM cases_track_data", db)
     all_tracking_data = tracking_data_df.to_dict(orient="records")
-    print(all_tracking_data)
 
-    exit()
     # Scrape with Selenium & Scrapy
     process = CrawlerProcess(get_project_settings())
-    process.crawl("casetracker", all_tracking_data=all_tracking_data)
+    process.crawl("casetracker", all_tracking_data=all_tracking_data, )
     process.start()
 
     # Send via Email
