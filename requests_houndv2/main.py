@@ -2,12 +2,11 @@ import requests
 
 url = "https://oficinajudicialvirtual.pjud.cl/ADIR_871/apelaciones/modal/causaApelaciones.php"
 
-# All in dtaCausa function in search btn
-# TODO base64encode
-# prefix = {"typ":"JWT","alg":"HS256"}
+# --- Case Unique ID ---
 encoded_prefix = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+# prefix = {"typ":"JWT","alg":"HS256"}
 
-# TODO base64encode
+encoded_rbody = "eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY1MzI4NjgyNSwiZXhwIjoxNjUzMjg4NjI1LCJkYXRhIjp7InJvbENhdXNhIjoiMzI5OCIsImVyYUNhdXNhIjoiMjAyMiIsImNvZENvcnRlIjoiMjUiLCJjb2RMaWJybyI6IjM0IiwiY29tb2RpbiI6MH19"
 # rbody = {
 #     "iss": "https:\/\/oficinajudicialvirtual.pjud.cl",
 #     "aud": "https:\/\/oficinajudicialvirtual.pjud.cl",
@@ -21,15 +20,15 @@ encoded_prefix = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
 #         "comodin": 0,
 #     },
 # }
-encoded_rbody = "eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY1MzI4NjgyNSwiZXhwIjoxNjUzMjg4NjI1LCJkYXRhIjp7InJvbENhdXNhIjoiMzI5OCIsImVyYUNhdXNhIjoiMjAyMiIsImNvZENvcnRlIjoiMjUiLCJjb2RMaWJybyI6IjM0IiwiY29tb2RpbiI6MH19"
 
-# TODO Look for valid random string - semms resusable
+# TODO Look for valid random string - seems resusable
 random_string = "GApTplldWYH4_925EqQkLvNCMaj2esGxk8s1VE0JXIU"
 
 # TODO Look for valid token - seems reusable
-token = "03AGdBq25pP8HI3pzmPLiX4H3xMlaA7rgXmpejFZEurzZgHa1hKhskeVMfFmNQKGabUuwYV3kwz7tLykwTbBGIwTJZ-dw5A1jmZo1XGen-soOeqmO4XZgUbrHIprk5KPDGoHLq_dRWhHVEFcKLh0cdK98Z6KNtJN4Di_K6A5UXpvJwDvKlglmrnwVVdpTTEJkpIQhUsBDNujtaDN8DM8v-5hQZscNUadmDkncfjUAis0vOzoinF_rGcyAcCp5kY8mX_axPLHslVWDMgD5Yp8LW2nm3gwf_1mOjV8l2Wyog5eQoDDqK_YzBtRFm1-k7SJ7l67b8_Uv_FJxbOTrhf2S1F1v0PUjCtUxAMW5g2PWWZjVlZbEHqdMmZBeQGawOdaNawLjxus-xBeFyZ8-2SsAXCgxBNB7g0Ed2yVf0wgVhNb0mu8PqfWuoVqUrh_mA-Rv6W6Xr-xQ85j6pa4b8A5dy4y0HL7pCcaUh8eB-T8bt63BTBOYj1pqfs2NBLg0UOXzWiLjQfNOhhtBL"
+# token = "ysHQ11NiZjVKoXcCJCzMy6ltkQxMyiJgwUgAow0XdKhBIT3QeD6c6y03z73AYUvc6qWzvrAS3YZ5VxJuPEp8Mc27Msz5WYqlTbo9fHko8T30vA4jolwF3nAgfXXAKSwDnmeA2Q1EsJXDFcjIFCucU0y_W_s2OrwvhOecjn"
 
-payload = f"dtaCausa={encoded_prefix}.{encoded_rbody}.{random_string}&tokenCaptcha={token}"
+# payload = f"dtaCausa={encoded_prefix}.{encoded_rbody}.{random_string}"
+# payload = f"dtaCausa={encoded_prefix}.{encoded_rbody}.{random_string}&tokenCaptcha={token}"
 # payload = f"dtaCausa={prefix}.{rbody}.{random_string}&tokenCaptcha={token}"
 headers = {
     "Host": "oficinajudicialvirtual.pjud.cl",
