@@ -1,5 +1,6 @@
 import jwt
 import requests
+import pandas as pd
 
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
@@ -45,7 +46,7 @@ def main():
         # --- Get Case Unique ID (JWT encoded data) ---
         raw_case = page.locator("a[href='#modalDetalleApelaciones']").get_attribute("onclick")
         case_jwt_encoded = raw_case.split("'")[1]
-        print(f"Original JWT: {case_jwt_encoded}")
+        # print(f"Original JWT: {case_jwt_encoded}")
 
         # Decode JWT
         jwt_options = {
@@ -56,13 +57,13 @@ def main():
             algorithms=["HS256"],
             options=jwt_options
         )
-        print(f"Decoded JWT: {case_jwt_decoded}")  # dict
+        # print(f"Decoded JWT: {case_jwt_decoded}")  # dict
 
         # Modify JWT data
         case_jwt_decoded["data"]["rolCausa"] = "1246"
         case_jwt_decoded["data"]["eraCausa"] = "2019"
 
-        print(f"Modified JWT: {case_jwt_decoded}")  # dict
+        # print(f"Modified JWT: {case_jwt_decoded}")  # dict
 
         # TODO - Re-encode JWT data
         encoded_jwt = jwt.encode(
@@ -70,8 +71,7 @@ def main():
             "secret",
             algorithm="HS256",
         )
-        print(f"Modifiend Encoded JWT: {encoded_jwt}")
-        # exit()
+        # print(f"Modifiend Encoded JWT: {encoded_jwt}")
 
         # --- Get Case Details ---
         headers = {
@@ -96,7 +96,10 @@ def main():
         response = requests.post(SEARCH_URL, headers=headers, data=payload)
         html = response.text
         soup = BeautifulSoup(html, "html.parser")
-        print(soup.prettify())
+        # print(soup.prettify())
+
+        df = pd.read_html(soup.prettify())
+        print(df)
 
         # --- Proof of Work ---
         # page.wait_for_timeout(3000)
