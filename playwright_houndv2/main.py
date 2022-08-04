@@ -95,11 +95,13 @@ def main():
 
         response = requests.post(SEARCH_URL, headers=headers, data=payload)
         html = response.text
-        soup = BeautifulSoup(html, "html.parser")
-        # print(soup.prettify())
+        with open("example.html", "w") as file:
+            file.write(html)
 
-        df = pd.read_html(soup.prettify())
-        print(df)
+        # soup = BeautifulSoup(html, "html.parser")
+
+        # df = pd.read_html(soup.prettify())
+        # print(df)
 
         # --- Proof of Work ---
         # page.wait_for_timeout(3000)
@@ -111,10 +113,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-        # --- TODO - Decode JWT encoded body ---
-        # PREFIX, body, SUFFIX = case_jwt_encoded.split(".")
-        # print(f"Prefix: {PREFIX}")
-        # print(f"Body: {body}")
-        # print(f"Suffix: {SUFFIX}")
