@@ -8,40 +8,33 @@ from jwt_manager import JWTManager
 
 
 def main():
-
     # --- TODO - LOAD DATABASE FROM GDRIVE ---
 
     # --- PLAYWRIGHT ---
-    with sync_playwright() as playwright:
-        run(playwright)
+    # with sync_playwright() as playwright:
+    #     original_jwt = run(playwright)
 
+    original_jwt = "detalleCausaApelaciones('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MzUxNCwiZXhwIjoxNjYxNjc1MzE0LCJkYXRhIjp7InJvbENhdXNhIjoiMzI5OCIsImVyYUNhdXNhIjoiMjAyMiIsImNvZENvcnRlIjoiMjUiLCJjb2RMaWJybyI6IjM0IiwiY29tb2RpbiI6MCwiZmxnX2Fub25pbWl6YWNpb24iOiIwIn19.iEJk5GsE4jH-hCmOS9oW_t3fHcHYsTT4zB3Ev1Ttn-c');"
+
+    jwt_manager = JWTManager(original_jwt)
+    jwt_manager.decoder()
+    jwt_manager.modify("1246", "2019")
+    jwt_manager.encode()
+    jwt_response = jwt_manager.request()
+
+    # soup = BeautifulSoup(html, "html.parser")
+
+    # df = pd.read_html(soup.prettify())
+    # print(df)
 
 
 def run(playwright):
     # --- Initialize ---
     START_URL = "https://oficinajudicialvirtual.pjud.cl/indexN.php"
 
-    headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0",
-        "Host": "oficinajudicialvirtual.pjud.cl",
-        "Accept": "text/html, */*; q=0.01",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Requested-With": "XMLHttpRequest",
-        # "Content-Length": "926",
-        "Origin": "https://oficinajudicialvirtual.pjud.cl",
-        "Connection": "keep-alive",
-        "Referer": "https://oficinajudicialvirtual.pjud.cl/indexN.php",
-        # "Cookie": "PHPSESSID=a3be543fe833dcc822e280eac807ff26; TS01262d1d=01b485afe585660d4c67014dbae081e834d7645796134f6239f97c548a3073e914ee141716aed35ac89f551655597512bdb5ed472ea4890221933232314529c1b5d4c1d0ba",
-        "Sec-Fetch-Dest": "empty",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-origin",
-    }
-
     # create browser instance
     firefox = playwright.firefox
-    browser = firefox.launch(headless=False)
+    browser = firefox.launch(headless=True)
 
     # create isolated browser context
     context = browser.new_context(
@@ -60,7 +53,7 @@ def run(playwright):
     ).click()
 
     # --- Fill Case Search Form ---
-    page.select_option("select#competencia", label="Corte Apelaciones", force=True)  # Competencia
+    page.select_option("select#competencia", label="Corte Apelaciones", force=True, value="2")  # Competencia
     page.select_option("select#conCorte", label="C.A. de La Serena", force=True, value="25")  # Corte
 
     page.type("input#conRolCausa", "3298", delay=100)  # ROL - TODO remove hardcode
@@ -85,20 +78,7 @@ def run(playwright):
     # page.wait_for_timeout(30000000)
 
     browser.close()
-
-    jwt_manager = JWTManager(original_jwt)
-    jwt_manager.decoder()
-    jwt_manager.modify("1246", "2019")
-    jwt_manager.encode()
-    jwt_response = jwt_manager.request()
-    print(jwt_response)
-
-    # soup = BeautifulSoup(html, "html.parser")
-
-    # df = pd.read_html(soup.prettify())
-    # print(df)
-
-
+    return original_jwt
 
 
 if __name__ == "__main__":
