@@ -1,0 +1,53 @@
+	<script>
+	if (typeof(Storage) !== 'undefined') {
+		// Código cuando Storage es compatible
+		let initBusqOld = localStorage.getItem('InitSitioOld');
+		let initBusqNew = localStorage.getItem('InitSitioNew');
+		
+		if (initBusqOld == '1'){
+			//Old ojv
+			//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+			localStorage.removeItem('InitSitioOld');
+			localStorage.removeItem('InitSitioNew');
+			localStorage.removeItem('logged-in');
+			sessionStorage.removeItem('logged-in');
+			//parent.location.href = 'https://oficinajudicialvirtual.pjud.cl';
+			parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+			
+		}else if (initBusqNew == '1'){
+			//New Ojv
+			//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+			localStorage.removeItem('InitSitioOld');
+			localStorage.removeItem('InitSitioNew');
+			localStorage.removeItem('logged-in');
+			sessionStorage.removeItem('logged-in');
+			//parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/home/';
+			parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+			
+		}else {
+			//Cerro sesion en tab
+			//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+			parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+			
+		}
+		
+	}else {
+		//Navegador no soporta hmtl5, se deja como estaba
+		//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+		parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+		//parent.location.href = 'https://oficinajudicialvirtual.pjud.cl';
+	}
+	</script>
+		<script>
+	 swal({
+		title: "",
+		text: "El vinculo ha expirado, por favor consulte nuevamente.",
+		type: "warning",
+		confirmButtonText: "Aceptar",
+	}, function () {
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+	});
+	limpia();
+	</script>
+	

@@ -5,11 +5,10 @@ import requests
 class JWTManager:
     def __init__(self, raw_jwt):
         self.original_jwt = raw_jwt.split("'")[1]
-        print(f"[*] JWT Manager initialized...")
         # print(f"Original JWT: {case_jwt_encoded}")
+        self.decoder()
 
     def decoder(self):
-        print(f"[*] JWT Manager decoding...")
         # Decode JWT
         jwt_options = {
             "verify_signature": False
@@ -21,16 +20,15 @@ class JWTManager:
         )
         # print(f"Decoded JWT: {case_jwt_decoded}")  # dict
 
-    def modify(self, rol: str, era: str):
-        print(f"[*] JWT Manager modifying JWT payload...")
+    def modify_to(self, rol: str, era: str):
         # Modify JWT data
         self.decoded_jwt["data"]["rolCausa"] = rol
         self.decoded_jwt["data"]["eraCausa"] = era
 
         # print(f"Modified JWT: {case_jwt_decoded}")  # dict
+        self.encode()
 
     def encode(self):
-        print(f"[*] JWT Manager encoding new JWT request...")
         self.encoded_jwt = jwt.encode(
             self.decoded_jwt,
             "secret",
@@ -59,7 +57,6 @@ class JWTManager:
             "Sec-Fetch-Site": "same-origin",
         }
         payload = f"dtaCausa=('{self.encoded_jwt}')"
-        print(f"[*] Sending new JWT request!")
         response = requests.post(SEARCH_URL, headers=headers, data=payload)
         html = response.text
 
