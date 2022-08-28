@@ -1,0 +1,2009 @@
+	<script>
+	if (typeof(Storage) !== 'undefined') {
+		// Código cuando Storage es compatible
+		let initBusqOld = localStorage.getItem('InitSitioOld');
+		let initBusqNew = localStorage.getItem('InitSitioNew');
+		
+		if (initBusqOld == '1'){
+			//Old ojv
+			//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+			localStorage.removeItem('InitSitioOld');
+			localStorage.removeItem('InitSitioNew');
+			localStorage.removeItem('logged-in');
+			sessionStorage.removeItem('logged-in');
+			//parent.location.href = 'https://oficinajudicialvirtual.pjud.cl';
+			parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+			
+		}else if (initBusqNew == '1'){
+			//New Ojv
+			//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+			localStorage.removeItem('InitSitioOld');
+			localStorage.removeItem('InitSitioNew');
+			localStorage.removeItem('logged-in');
+			sessionStorage.removeItem('logged-in');
+			//parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/home/';
+			parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+			
+		}else {
+			//Cerro sesion en tab
+			//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+			parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+			
+		}
+		
+	}else {
+		//Navegador no soporta hmtl5, se deja como estaba
+		//alert('Sesi\u00F3n expirada, por favor vuelva a ingresar.');
+		parent.location.href = 'https://oficinajudicialvirtual.pjud.cl/SesionExpirada/';
+		//parent.location.href = 'https://oficinajudicialvirtual.pjud.cl';
+	}
+	</script>
+	<script>
+$(document).ready(function(){
+//---- TOOLTIPS DEL ROL -----	
+	$(".topToolNom").tooltip({ placement: "bottom" });
+//----------------------------------------------
+});
+</script>
+<!--[if IE]>
+<style>
+    .panel-default {
+         margin-top: 30px;
+    }
+</style>
+<![endif]-->
+	<div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" style="color:#337ab7;">Detalle Causa Apelaciones</h4>
+			</div>
+		
+			<div class="modal-body">
+			
+				<div class="panel with-nav-tabs">
+				
+					
+					<div class="panel-heading">
+						<ul class="nav nav-tabs" style="display:inline-block">
+							<li class="active"><a data-toggle="tab" href="#recursoApe">Recurso</a></li>
+							<li><a data-toggle="tab" href="#expedienteApe">Expediente Primera Instancia</a></li>
+						</ul>
+					</div>
+					
+					
+					<div class="tab-content">
+						
+						<div class="tab-pane fade in active" id="recursoApe"> <!-- INICIO PANEL -->
+						
+							<div class="panel panel-default">
+								<table class="table table-responsive table-titulos">
+									<tbody>
+										<tr>
+											<td><strong>Libro :</strong> Protección - 1246 - 2019</td>
+											<td><strong>Fecha :</strong> 11/09/2019</td>
+											<td colspan="2"><strong>Estado Recurso:</strong> Vigente                       </td>
+										</tr>
+										<tr>
+											<td><strong>Estado Procesal:</strong> Fallada-Terminada</td>
+											<td><strong>Ubicaci&oacute;n:</strong> Fallado en espera de ejecutoria                   </td>
+											<td colspan="2"><strong>Recurso:</strong> PR16-Protección-Isapre Adecuación</td>
+										</tr>
+										<tr>
+											<td colspan="2"><strong>Corte:</strong> C.A. de La Serena             </td>
+										</tr>
+									</tbody>
+								</table>
+										
+								<table class="table table-responsive table-titulos">
+									<tbody>
+										<tr>
+											<td>
+											  <!-- Bloque boton Certificado -->
+												<strong>Certificado de Env&iacute;o:</strong><br>
+												<form name="certCivil" action="ADIR_871/apelaciones/documentos/docCertificadoDemanda.php" method="get" target="cert">
+													<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzE2NDMxMTkifX0.PPFCHbH0XQjnisRSUGpIImDp5DhcyhTUsKkRLhnxyT0'>
+													<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Certificado">
+														<i title="Descargar Certificado" class="fa fa-file-pdf-o fa-lg" aria-hidden="true" style="color:#ab5659; cursor:pointer;" ></i>
+													</a>
+												</form>
+								<!-- Fin Bloque boton Certificado -->
+											</td>
+											
+											<!-- INICIO EBOOK -->
+											<td id="contenedorEbook">
+																							<strong>Ebook:</strong>
+													<form name="form" action="ADIR_871/apelaciones/documentos/newebookapelaciones.php" method="get" target="_blank">
+														<input type='hidden' name='dtaEbook' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZF9jb3J0ZSI6IjI1Iiwicm9sX2NhdXNhIjoiMTI0NiIsImNvZF9saWJybyI6IjM0IiwiZXJhX2NhdXNhIjoiMjAxOSJ9fQ.x6q5f2t0ZxGqua3Vo4YqbyHgDXcMWxeYoE3H_xJmz10'>
+														<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Ebook">
+<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">															
+</a>
+																											</form>
+												
+											</td>
+											<!-- FIN EBOOK -->
+											
+											<td>
+											<!--bloque carpeta documento del recurso-->
+																						<strong>Texto:</strong><br>
+													<a data-toggle="modal" href="#modalAnexoRecursoApelaciones" title="Anexo recurso apelaciones" onClick="anexoRecursoApelaciones('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZF9jb3J0ZSI6IjI1Iiwicm9sX2NhdXNhIjoiMTI0NiIsImNvZF9saWJybyI6IjM0IiwiZXJhX2NhdXNhIjoiMjAxOSJ9fQ.x6q5f2t0ZxGqua3Vo4YqbyHgDXcMWxeYoE3H_xJmz10');"><i class="fa fa-folder fa-lg" aria-hidden="true" style="cursor:pointer; color:#D7B926"></i></a>
+											<!--fin bloque carpeta documento del recurso   -->	
+											</td>									
+											<td>
+											<!-- Bloque Anexo de la Causa -->
+																						<strong>Anexo:</strong><br>
+													<a data-toggle="modal" href="#modalAnexoCausaApelaciones.php" title="Anexo causa apelaciones" onClick="anexoCausaApelaciones('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZF9jb3J0ZSI6IjI1Iiwicm9sX2NhdXNhIjoiMTI0NiIsImNvZF9saWJybyI6IjM0IiwiZXJhX2NhdXNhIjoiMjAxOSJ9fQ.x6q5f2t0ZxGqua3Vo4YqbyHgDXcMWxeYoE3H_xJmz10');"><i class="fa fa-folder fa-lg" aria-hidden="true" style="cursor:pointer; color:#D7B926"></i></a>
+											<!-- Fin Bloque Anexo de la Causa -->	
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+								<div class="panel-heading">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#movimientosApe">Movimientos</a></li>
+							<li><a data-toggle="tab" href="#litigantesApe">Litigantes</a></li>
+						</ul>
+					</div>
+					
+					<div class="tab-content">
+						
+						<div class="tab-pane fade in active" id="movimientosApe"> <!-- INICIO PANEL -->
+						
+							<div class="panel panel-default">
+							
+								<div class="table-responsive">
+									
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr>
+												<th>Folio</th>
+												<th>Doc.</th>
+												<th>Anexo</th>
+												<th>Tr&aacute;mite</th>
+												<th>Descripci&oacute;n</th>
+												<th>Fecha</th>
+												<th>Sala</th>
+												<th>Estado</th>
+												<th>Georeferencia</th>
+											</tr>												
+										</thead>
+										<tbody>
+												<tr>
+													<td>50</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd1" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIzMzQ2ODcxNSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIzNzE5NTg0MSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.gw3EyVxSUd7mUxBTvetoOb-C_DpaoOIRnFiUUsIugWw'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Mero Trámite" class="topToolNom">Previo a proveer</span>
+													</td>
+													<td>06/07/2021</td>
+													<td>Presidencia</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>49</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd2" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIxMDgzMTYxOCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIxNDcwNzE4NiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjF9fQ.ftMnScK1Nd9LZvqhJPpZepFB8Kh_TSGz4OrrggZYID0'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">56023559</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiNTYwMjM1NTkifX0.BIeQlRJgN6zFrdBM8THW3Cad0L1erg-JYEbbYaHslb4'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Recurrido" class="topToolNom">Acompaña boleta consignacion</span>
+													</td>
+													<td>05/07/2021</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>48</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd3" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIzMzMxMDk3MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIzNzAxODY3NCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.ml-GfRN5wFVkIW4rjJyiKg_nbdYmsAqOwqWdAp2DHaQ'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">COMUNICA APER. INF. Y OTROS</span>
+													</td>
+													<td>17/06/2021</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>47</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd4" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIzMzI4ODA1MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIzNjk5NDIxNiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.0ZBihuh6f2qV-IgxRowryjPIPGJYnbXpLhgSMf_4Ycw'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Acompaña Documentos    2.Apercibe Informe y Otros" class="topToolNom">Acomp Dcto/Revalidacion</span>
+													</td>
+													<td>17/06/2021</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>46</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd5" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIxMDcyNDExNyIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIxNDYwMDUwNSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjF9fQ.b9djlJakr_gOW428IQi9K0DpmL9Fj1oiIW3f4HXjS5k'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">55261808</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiNTUyNjE4MDgifX0.4ayab9EN0aJfd1HIigWCA-MLWppkdqoBj-9SESBvy5Y'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+															<a data-toggle="modal" href="#modalAnexoEscritoApelaciones" title="anexo escrito apelaciones" onClick="anexoEscritoApelaciones('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycklkRG9jRXNjIjoiMTQ2MDA1MDUiLCJjb2RfY29ydGUiOiIyNSIsImNvZF9saWJybyI6IjM0Iiwicm9sX2NhdXNhIjoiMTI0NiIsImVyYV9jYXVzYSI6IjIwMTkifX0.IosCr57kJX3m5y-Zu9vRv7UFeh83D40k3lOoskHZd0g');"><i class="fa fa-folder fa-lg" aria-hidden="true" style="cursor:pointer; color:#D7B926"></i></a>
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Acompaña documentos</span>
+													</td>
+													<td>12/06/2021</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>45</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd6" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNjA4NTEzMyIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyOTM3MTM1MyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.bPXZnRdpiygz7bWe8F49wjvilC4nhVX8EO6Q8nj9HLI'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Téngase Presente" class="topToolNom">Téngase Presente</span>
+													</td>
+													<td>20/01/2020</td>
+													<td>Presidencia</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>44</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd7" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI4MTMxNjQ0IiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjEyMDIzMDgxIiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.efJYR77GYPix1RE4btP9xv0q3hQDTAJtrVu0YgN6aPc'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">35992085</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzU5OTIwODUifX0.GF3eixJhdADbhz53PXj8lhXvI7gJa7f_wPciohrGmaQ'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Recurrido" class="topToolNom">Acompaña boleta consignacion</span>
+													</td>
+													<td>16/01/2020</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>43</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd8" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTk1Nzk5MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyOTIzNjc3NCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.vls9QTM04QGj1CwOj7Kf_Vc-be_KnILxHb7CsnQtGzw'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Téngase Presente" class="topToolNom">Téngase Presente</span>
+													</td>
+													<td>09/01/2020</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>42</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd9" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI4MDczMzkyIiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExOTY1MjExIiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.Gl1tdmhWdD89118Nn1hrtsVhbQW0sNiNX5QAuOrx634'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">35588761</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzU1ODg3NjEifX0.m6JN07c4RyUFAQ4scONoeq_Fz0oCXxWar5QXqNDWBPU'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Recurrido" class="topToolNom">Acompaña boleta consignacion</span>
+													</td>
+													<td>07/01/2020</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>41</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd10" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTcxODAzMSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODk4NTQxMyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.Rc1Fs9IoYd1h2cHKX0FhybQpkwML-5VG6nuuDUZ0owQ'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">Const.@ envio</span>
+													</td>
+													<td>19/12/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>40</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd11" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTcwODE5OSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODk3NTQ5MyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.GS2b7Io_6ae1AKzpddRtKcLBVpPvQcMeJ3T6et7lDgo'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Oficio emisor" class="topToolNom">OF.5309.Tesoreria</span>
+													</td>
+													<td>19/12/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>39</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd12" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTcxMzAyNSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODk4MDI3OSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.KsNUVHnAvxwt9VHFl4S4Gpi2j6c9TUmsRm95xkVvk0Y'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">COMUNICA APLICA SANCIÓN</span>
+													</td>
+													<td>18/12/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>38</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd13" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTY4NTI4OCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODk1MzUwMyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.R54SPQ3Qvw4TfL3IERJWQJ1dNPi9NGX7IGhokLlW17I'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Aplica Sanción" class="topToolNom">Aplica Sanción</span>
+													</td>
+													<td>18/12/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>37</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd14" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3OTc0MjQwIiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExODQ4NDg5IiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.JZ5k4Ft0aEyPGcMTDjkDLc0eYlnYvW50oQMtX8Flzqk'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">34939961</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzQ5Mzk5NjEifX0.rD2wjgXCElQuGfORhzDZhsnDG8Qu3LkKbPzdXytWTO0'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Se de curso progresivo a estos autos</span>
+													</td>
+													<td>16/12/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>36</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd15" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTQzMDA0NiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODY4NDM5MSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.FTVfPqFAP3MISPrCPFQfwbl2gafQnX6jHsauytIq4gk'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">Const. Remisión pide informe</span>
+													</td>
+													<td>02/12/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>35</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd16" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTQwOTA1OSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODY1OTI0NyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.5r6YmYYz2R0ohvL69_SDMgSLvNzLrNMB6OlVtEFlL8Y'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Oficio emisor" class="topToolNom">Of.4697.Apercibimiento</span>
+													</td>
+													<td>29/11/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>34</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd17" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTM3NDI0MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODYyMjE1OCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.hwmq6vBbvDWdbsutCkJRMArj2j16ZJvMjU6tlSa6gM8'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Apercibimiento" class="topToolNom">Apercibimiento</span>
+													</td>
+													<td>28/11/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>33</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd18" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3ODY1NzUzIiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExNzQxMDQyIiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.NZnO4ILaj2xVQr9xJ8m-KV6YX6HC0IW_jHMIADX9yMQ'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">34183051</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzQxODMwNTEifX0.Et0VqE5oZx-uMLjsqlACZREaIObn3RBNIh69t28xwFs'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Apercibimiento</span>
+													</td>
+													<td>26/11/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>32</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd19" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTI4NDY2MCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODUyNTU0NCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.zPDtOIq878ZK_CuagJkfv5MiR7Ssbuw3wNqTIEpHp54'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Certificacion (en el mismo expediente)" class="topToolNom">Certificación ejecutoriada</span>
+													</td>
+													<td>22/11/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>31</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd20" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTI4MTU5NCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODUyMjQ1MSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.MK9X5xooefEYwv75vbQaxXGDATfQxYSDCFXMt0phXoc'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Certifíquese" class="topToolNom">Certifíquese</span>
+													</td>
+													<td>22/11/2019</td>
+													<td>Presidencia</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>30</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd21" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3ODQwODY1IiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExNzE2MzM1IiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.JxMAs-XCaom_BLDfQq557L469SVpw7cLqN66G71jq8I'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">34000578</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzQwMDA1NzgifX0.hwkhy9vAndqY8cBYb7P3_TXw_4cQQAzoMtUEriMXlYA'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Certificacion</span>
+													</td>
+													<td>20/11/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>29</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd22" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTE2MTYzNyIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODM5NDQ0MCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.AmvqAobyOyEFWAR0fcPcAm6Dt4te-KpUcSrVp2YeBxY'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">COMUNICA RES. OBJ. COSTAS</span>
+													</td>
+													<td>13/11/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>28</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd23" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNTEzMjIzNCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODM2NDg3MyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.dtG4O-FyqklNdoI0i2GnlmExI_pO_AkwGHt4DI9v_q8'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Resuelve Objeción Costas" class="topToolNom">Resuelve Objeción Costas</span>
+													</td>
+													<td>13/11/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>27</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd24" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3Nzk1NDg1IiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExNjcxMjM1IiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.r85u2RsFeSoj4jrYpEDtnWOz9oS-vhiEO5kbBr7RRHg'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">33677911</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzM2Nzc5MTEifX0.9I9a4EjJIQOzwrjPeOFTcQ58lZ_nEZ7enCGw1dUWtfY'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Se de curso progresivo a estos autos</span>
+													</td>
+													<td>11/11/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>26</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd25" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDg5NzYwMyIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODExNTM3NiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.YSNQ1dIl41RbzFZxim2TS4y6LRDMowTRAVQX0jz5_zU'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Mero Trámite" class="topToolNom">Traslado</span>
+													</td>
+													<td>29/10/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>25</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd26" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3NzIxNTQwIiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExNTk4MDQ1IiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.66DDmb1LRS4JXK5cPPtLjo1tT57l_mb-q0Xh-EIhXAg'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">33243320</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzMyNDMzMjAifX0.LFJNkBGgbidSOVRGFGwhBxProAHvDXnVYfFJUKxdXRY'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Se objeta tasacion/regulacion de costas</span>
+													</td>
+													<td>27/10/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>24</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd27" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDg3Nzg0MCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODA5Mzk0MCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.0W-ky1UQiTB5TNy12GG8R7pMjf9u0cRbdKSk8RcU3Vs'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">COMUNICA FIJA COSTAS</span>
+													</td>
+													<td>25/10/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>23</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd28" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDg3NzgyNCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODA5MzkyMyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.8gzeOT3wfVciNx8MBDU5ap0GX2rGEyp-Opyh2APR_Pg'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">COMUNICA ACOGIDA</span>
+													</td>
+													<td>25/10/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>22</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd29" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDgxMjY1MSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODAyODI5OCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.0PXz0_vHCmvP_b-6ZT2kV1uNmWOdSt2CYgju_X03VIw'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Fija Costas" class="topToolNom">Fija Costas</span>
+													</td>
+													<td>25/10/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>21</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd30" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDgxMjY0MSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyODAyODI5MSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.dXUU57EGWqgtErr8GGtxYB9VVx97TQlGcQom67o1j9o'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Sentencia<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Acogida" class="topToolNom">Acogida</span>
+													</td>
+													<td>25/10/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>20</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd31" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDcxMjg3MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzkyNTI5NiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.B48ysrx4Sr3EN18hCwwTKa3reoUDqiXwRJg587ilGpE'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Agréguese Extraordinariamente    2.En Relación" class="topToolNom">En Relación/Agregda 25/10</span>
+													</td>
+													<td>16/10/2019</td>
+													<td>Presidencia</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>19</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd32" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3NjQxNjE4IiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExNTE4ODY5IiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.0lbk0xyOspwuGgUyXXmNGLa-H1VQleKZIEMp1uO9Aps'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">32744507</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzI3NDQ1MDcifX0.zNVP_sUd1Zzag8dF7QPp9k6eLxNdZV5hGLzyWsu5igg'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Recurrido" class="topToolNom">Se evacua informe</span>
+													</td>
+													<td>11/10/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>18</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd33" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDU5MjY2MCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzgwMDcxMCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.JtzRwmY70cDUHmJcs--k0VJ8qBJMDO3aOzump2xLoeM'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Apercibimiento" class="topToolNom">Reitera Apercibimiento</span>
+													</td>
+													<td>11/10/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>17</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd34" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3NTYwODY2IiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExNDM4NDMxIiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.vMvS4UACCdCYyK8WRMWS8Oa3Vbhxq_y1Q6gZWl8SRwQ'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">32530278</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzI1MzAyNzgifX0.qOYc3wBfahAl5EVRmqg9s_p0zNYUbYSQKVswk7nfFbs'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Se de curso progresivo a estos autos</span>
+													</td>
+													<td>08/10/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>16</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd35" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDMxNTgxNCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzUxODc4MyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.lS2aaJedrJCuYQA7GJ4tdv3HBufTfHuYHPaTnoOvvy8'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">comunicado@</span>
+													</td>
+													<td>02/10/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>15</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd36" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDMxMzA4NCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzUxNjA5OCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.XZ54r70DuLi_ymONPzAsH3d2vaWcAGMIsSzMi3sf2lM'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Oficio emisor" class="topToolNom">Oficio3938 pide cta informe</span>
+													</td>
+													<td>02/10/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>14</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd37" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDI2ODkzNSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzQ3MTczNSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.QuYRfgZmNzFn2T7yAnv-DQA59ebvz27fc1Fm1qVgnrw'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Apercibimiento" class="topToolNom">Apercibimiento</span>
+													</td>
+													<td>01/10/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>13</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd38" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3NDY3NDY2IiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExMzQ1NDI3IiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.Fart-I4HhW-ETWX-47_5-_ChMGE8jxtCErzksK5TOIE'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">32134322</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzIxMzQzMjIifX0.aD_dw1aIZEDPOlXwtyiUI0nxKxWX0VRsN3hcmpfy7c8'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Se de curso progresivo a estos autos</span>
+													</td>
+													<td>29/09/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>12</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd39" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDE0NzEzMSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzM0NTk4MCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.YwWhTEmjYxQkTrEGagil0T0ePLtsAng0MA_sa_RleCk'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Mero Trámite" class="topToolNom">No ha lugar</span>
+													</td>
+													<td>25/09/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>11</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd40" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3NDI1MTgxIiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExMzAzNDg1IiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.cnKrzFiN_n-26djlp-mc1uS0a9NVCi_Bb9HcQ4uNFro'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;">31908859</div>						
+															<form name="certApe" action="ADIR_871/apelaciones/documentos/docCertificadoEscrito.php" method="get" target="cert" style="display: inline-block;">
+																<input type='hidden' name='dtaCert' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNvZENlcnRpZmljYWRvIjoiMzE5MDg4NTkifX0.DE01gqTroe1k3jkWJ9dcuBmTmI9wqL_Uqcjf2OH3Gmg'>
+																<a href="#" onClick='$(this).closest("form").submit();' style="display: inline-block;">
+																	<i class="far fa-file-pdf fa-lg" aria-hidden="true" style="color:#2693FF; cursor:pointer; display: inline-block;" title="Certificado de envio escrito" ></i>
+																</a>
+															</form>														
+				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Abogado Recurrente" class="topToolNom">Se de curso progresivo a estos autos</span>
+													</td>
+													<td>23/09/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>10</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd41" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA5NDE5NCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzI4ODQ0MiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.Xh_35nePhuwiIVo2IDZn3jTV_VZtATOVeaAKgwyWorM'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Mero Trámite" class="topToolNom">En conocimiento inhabilidad</span>
+													</td>
+													<td>17/09/2019</td>
+													<td>Presidencia</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>9</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd42" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDEwMTEzNyIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzI5NTU1MyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.KqnpjYOUWceGW4iTEWdGy8MNQpcE8PR2MLC6OdovDYU'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">COMUNICA CONCEDE ONI</span>
+													</td>
+													<td>16/09/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>8</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd43" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA5NDE1OSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzI4ODQxMCIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.f_JZMGHyWddRC3pncPtdREeRp9xj2JWrp69AGRF3xi0'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Certificacion (en el mismo expediente)" class="topToolNom">Constancia  de inhabilidades</span>
+													</td>
+													<td>16/09/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>7</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd44" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA3NTU0MyIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzI2NzcxMyIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.yioEgtexYGDmHDgbpuv8WrDFjn3pjxxZvzRdAozGwAI'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Concede ONI (PR16)" class="topToolNom">Concede ONI (PR16)</span>
+													</td>
+													<td>16/09/2019</td>
+													<td>Segunda Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>6</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd45" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA3ODEzMiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzI3MDMzNSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.ldzR4T3LluyNFaEyn0Ps1CoQ9mTIpJve0nWfnGYJUDo'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Actuacion" class="topToolNom">COMUNICACIÓN ISAPRE</span>
+													</td>
+													<td>13/09/2019</td>
+													<td>Primera Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>5</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd46" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA1MTU5MiIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzI0MjMwNiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.Bu4cQ1e_KrQoxca2lhNIPq4H6bsCtgnWg8w4_cgN1Jk'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Certificacion (en el mismo expediente)" class="topToolNom">Cta ONI Segunda Sala</span>
+													</td>
+													<td>13/09/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>4</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd47" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA1MTU0MSIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzI0MjIyMSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.xkcu3kpLoUHFUJvIn60RUXSJLclICcvTb_9ngGnUWfI'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Interpuesto Recurso de Protección    2.Pasen los antecedentes al Sr. Presidente    3.Orden de No Innovar" class="topToolNom">Inter.Rec.Protecc/ONI</span>
+													</td>
+													<td>13/09/2019</td>
+													<td>Primera Sala</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd48" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA0NTE2NCIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzIzNjE1NiIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.yyYuyLXnfxfyTaLgGIOMwS3lr493WcDmpmS1uKEQlL8'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Actuación<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Certificacion (en el mismo expediente)" class="topToolNom">Cert. calidad abogado</span>
+													</td>
+													<td>11/09/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd49" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiIyNDA0NTE2MyIsImNvZF9jb3J0ZSI6IjI1IiwiY3JySWREb2NFc2MiOiIyNzIzNjE1NSIsImNvZF90aXBhcmNoaXZvIjoiMyIsInRyYW1pdGUiOjB9fQ.ghotSsVdBqz1LvHHChLRKkUVsDM2YHyweecCwVxIGZI'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Resolución<input type="hidden" value=34></td>
+													<td>
+														<span title="Nomenclaturas  :    1.Inicio tramitación" class="topToolNom">Inicio tramitación</span>
+													</td>
+													<td>11/09/2019</td>
+													<td>Cuenta</td>
+													<td>Bloqueado</td>
+													<td align="left">
+													</td>
+												</tr>
+												<tr>
+													<td>1</td>
+													<td align="center">
+																	<form name="frmDoc" action="ADIR_871/apelaciones/documentos/docCausaApelaciones.php" method="get" target="wrd50" style="display: inline-block;">
+																		<input type='hidden' name='valorDoc' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvb2ZpY2luYWp1ZGljaWFsdmlydHVhbC5wanVkLmNsIiwiYXVkIjoiaHR0cHM6XC9cL29maWNpbmFqdWRpY2lhbHZpcnR1YWwucGp1ZC5jbCIsImlhdCI6MTY2MTY3MjMwMSwiZXhwIjoxNjYxNjc1OTAxLCJkYXRhIjp7ImNycl9kb2MiOiI3Mzg3MDk3IiwiY29kX2NvcnRlIjoiMjUiLCJjcnJJZERvY0VzYyI6IjExMjY1ODAzIiwiY29kX3RpcGFyY2hpdm8iOiIzIiwidHJhbWl0ZSI6MX19.J9mXAXXOIptGsB6myRgzyjXL-0sN2ZmMlN11uT8h6VY'>
+																		<a href="#" onClick='$(this).closest("form").submit();' title="Descargar Documento">
+																			<img src="/ADIR_871/apelaciones/modal/icono_PDF.png" width="25px">
+																		</a>
+																																			
+																	</form>
+<div style="display:none;">SELECT  CRR_CERTIFICADO_OJV,COD_FEA
+													FROM SITCORTE.TCOR_ESCRITO_APE
+													WHERE
+													ROL_RECURSO_APE = :rol_causa
+													AND ERA_RECURSO_APE = :era_causa
+													AND COD_CORTE_APE = :cod_corte
+													AND COD_LIBRO_APE = :cod_libro
+													AND CRR_ESCRITO_ID = :crr_escrito
+													AND TIP_INGRESO = 7</div><div style="display:none;"></div>				
+													</td>
+													<td align="center"><!-- ANEXO -->
+														
+													</td><!-- FIN ANEXO -->
+													<td>Escrito<input type="hidden" value=34></td>
+													<td>
+														<span title="Otro" class="topToolNom">*Ingreso Recurso</span>
+													</td>
+													<td>11/09/2019</td>
+													<td>...</td>
+													<td>Resuelto</td>
+													<td align="left">
+													</td>
+												</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+
+						</div> <!-- FIN PANEL -->
+
+
+						<div class="tab-pane fade" id="litigantesApe"> <!-- INICIO PANEL -->
+							<div class="panel panel-default">
+							
+								<div class="table-responsive">
+
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr>
+												<th>Sujeto</th>
+												<th>Rut</th>
+												<th>Persona</th>
+												<th>Nombre o Raz&oacute;n Social</th>
+											</tr>												
+										</thead>
+										<tbody>
+											<tr>
+												<td>Ab.Recurrente</td>
+												<td>7772589-K</td>
+												<td>Natural                       </td>
+												<td>MARÍA MÓNICA GAJARDO GONZÁLEZ</td>
+											</tr>
+											<tr>
+												<td>Recurrente</td>
+												<td>6314248-4</td>
+												<td>Natural                       </td>
+												<td>RENÉ ANTONIO RAMÍREZ PEÑALOZA</td>
+											</tr>
+											<tr>
+												<td>Recurrido</td>
+												<td>76296619-0</td>
+												<td>Juridica                      </td>
+												<td>ISAPRE COLMENA GOLDEN CROSS S.A.  </td>
+											</tr>
+										</tbody>
+									</table>
+										
+								</div>
+							</div>
+						</div> <!-- FIN PANEL -->
+
+
+					</div>
+						</div> <!-- FIN PANEL -->
+						
+						<div class="tab-pane fade" id="expedienteApe"> <!-- INICIO PANEL -->
+							<div class="panel panel-default">
+								<table class="table table-responsive table-titulos">
+									<tbody>
+										<tr>
+											<td><strong>Rol o Rit :</strong>  -  - </td>
+											<td colspan="2"><strong>Tribunal:</strong> </td>
+										</tr>
+											
+										<tr>
+												<td colspan="3"><strong>Caratulado:</strong> RECURSO DE PROTECCION INTERPUESTO POR RENE ANTONIO RAMÍREZ PEÑALOZA EN CONTRA DE LA ISAPRE COLMENA GOLDEN CROSS S.A.</td>
+										</tr>
+										<tr>
+											<td><strong>Materia:</strong> </td>
+											
+											<td><strong>Ruc :</strong> </td>
+											<td><strong>Fecha Ingreso:</strong> </td>
+										</tr>
+									</tbody>
+								</table>
+								
+							</div>
+							
+						</div> <!-- FIN PANEL -->
+                
+					</div>
+					
+					
+				
+					
+				</div>
+                
+
+			</div>
+			
+        
+			<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						</div>
+			
+		</div>
+	</div>
