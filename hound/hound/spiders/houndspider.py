@@ -5,8 +5,10 @@ class HoundspiderSpider(scrapy.Spider):
     name = "houndspider"
 
     def start_requests(self):
-        url = ""
+        url = "https://oficinajudicialvirtual.pjud.cl/indexN.php"
         yield scrapy.Request(url, meta={"playwright": True})
 
     def parse(self, response):
-        pass
+        yield {
+            "text": response.text
+        }
